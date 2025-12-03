@@ -1,6 +1,16 @@
 import React from "react";
 import noProjectImg from "../assets/no-projects.png";
-function ProjectTaskPage({ project }) {
+
+function formattedDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+function ProjectTaskPage({ project, handleAddButton }) {
   // project 선택 안했을 시
   if (!project) {
     return (
@@ -13,7 +23,10 @@ function ProjectTaskPage({ project }) {
           Please select a project or create a new one.
         </p>
         <p className="mt-8">
-          <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-400 hover:bg-stone-950">
+          <button
+            onClick={handleAddButton}
+            className="px-6 py-2 rounded-md bg-stone-800 text-stone-400 hover:bg-stone-950"
+          >
             Create Project
           </button>
         </p>
@@ -22,7 +35,8 @@ function ProjectTaskPage({ project }) {
   }
 
   // project 선택 시
-  const [title, dueDate, description] = project;
+  const { title, description, dueDate } = project;
+  const date = formattedDate(dueDate);
   return (
     <div className="w-[35rem] mt-16">
       <div className="flex items-center justify-between">
@@ -31,7 +45,7 @@ function ProjectTaskPage({ project }) {
         </header>
         <button className="text-stone-700 hover:text-red-500">Delete</button>
       </div>
-      <p className="mb-4 text-stone-400">{dueDate}</p>
+      <p className="mb-4 text-stone-400">{date}</p>
       <p className="mb-4 text-stone-600 whitespace-pre-wrap">{description}</p>
       <hr />
       {/* Task Section */}
