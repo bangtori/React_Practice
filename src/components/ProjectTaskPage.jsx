@@ -13,7 +13,12 @@ function formattedDate(dateString) {
   });
 }
 
-function ProjectTaskPage({ project, handleAddButton, deleteProject }) {
+function ProjectTaskPage({
+  project,
+  handleAddButton,
+  deleteProject,
+  taskHandler,
+}) {
   // project 선택 안했을 시
   console.log(project);
   if (!project) {
@@ -59,7 +64,11 @@ function ProjectTaskPage({ project, handleAddButton, deleteProject }) {
           {description || "No description provided."}
         </p>
       </header>
-      <TasksSection tasks={project.tasks} />
+      <TasksSection
+        projectId={id}
+        tasks={project.tasks}
+        taskHandler={taskHandler}
+      />
     </div>
   );
 }
