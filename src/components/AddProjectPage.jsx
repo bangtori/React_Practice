@@ -19,6 +19,7 @@ function AddProjectPage({ handleButton }) {
       title: enteredTitle,
       description: enteredDescription,
       dueDate: enteredDueDate,
+      tasks: [],
     });
   }
   return (

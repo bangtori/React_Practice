@@ -1,6 +1,10 @@
 import noProjectImg from "../assets/no-projects.png";
+import TasksSection from "./TasksSection";
 
 function formattedDate(dateString) {
+  if (!dateString) {
+    return;
+  }
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -37,6 +41,7 @@ function ProjectTaskPage({ project, handleAddButton, deleteProject }) {
   // project 선택 시
   const { id, title, description, dueDate } = project;
   const date = formattedDate(dueDate);
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -49,13 +54,12 @@ function ProjectTaskPage({ project, handleAddButton, deleteProject }) {
             Delete
           </button>
         </div>
-        <p className="mb-4 text-stone-400">{date}</p>
-        <p className="mb-4 text-stone-600 whitespace-pre-wrap">{description}</p>
+        <p className="mb-4 text-stone-400">{date || "No due date"}</p>
+        <p className="mb-4 text-stone-600 whitespace-pre-wrap">
+          {description || "No description provided."}
+        </p>
       </header>
-      {/* Task Section */}
-      <section>
-        <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-      </section>
+      <TasksSection tasks={project.tasks} />
     </div>
   );
 }
