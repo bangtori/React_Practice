@@ -1,0 +1,19 @@
+# 1. 패키지 모듈 
+node_modules/
+
+# 2. 로그 파일들
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 3. 에디터 설정 (VS Code 등)
+.vscode/
+.idea/
+
+# 4. Mac 시스템 파일 
+.DS_Store
+
+# 5. 환경 변수 파일
+.env
+.env.local
